@@ -27,10 +27,14 @@
 }
 
 .minesweeper .game-board .cell.flagged {
-     background : #b3d4fc;
+    background : #b3d4fc;
 }
 
-.minesweeper .game-board .cell.flagged.unsure:before {
+.minesweeper .game-board .cell.unsure {
+    background : #b3d4fc;
+}
+
+.minesweeper .game-board .cell.unsure:before {
     content : "?"
 }
 

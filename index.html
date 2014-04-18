@@ -27,7 +27,7 @@
             </div>
 
             <div data-ng-controller="appController" class="game-board">
-                <cell data-ng-repeat="cell in gameBoard.cells" data-ng-class="cell.type"></cell>
+                <cell data-ng-repeat="cell in gameBoard.cells" data-ng-class="cell.cssClass" data-cell="cell"></cell>
             </div>
         </div>
 

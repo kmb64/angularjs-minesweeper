@@ -11,7 +11,8 @@ mswApp.controller('appController', function($scope){
             { type : 'six'},
             { type : 'seven'},
             { type : 'eight'},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : 'mine'},
             { type : 'flagged'},
@@ -21,7 +22,19 @@ mswApp.controller('appController', function($scope){
             { type : 'mine death'},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
+
+            { type : 'bomb'},
+            { type : ''},
+            { type : ''},
+            { type : ''},
+            { type : ''},
+            { type : ''},
+            { type : ''},
+            { type : ''},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -31,7 +44,8 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -41,7 +55,8 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -51,7 +66,8 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -61,7 +77,8 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -71,7 +88,8 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
+            { type : '',
+             cssClass : 'last-in-row'},
 
             { type : ''},
             { type : ''},
@@ -81,26 +99,39 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : 'last-in-row'},
-
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : ''},
-            { type : 'last-in-row'}
+            { type : '',
+             cssClass : 'last-in-row'}
         ]
     };
 });
 
 mswApp.directive('cell', function(){
 
+    function changeState(element, cell, newState) {
+        element.removeClass(cell.state);
+        cell.state = newState;
+        element.addClass(cell.state);
+    }
+
     function link(scope, element, attrs) {
+
         element.bind('click', function(){
-            element.addClass('clicked');
+            if(scope.cell.state !== 'flagged') {
+                changeState(element, scope.cell, scope.cell.type);
+            }
+        });
+
+        element.bind('contextmenu', function(e){
+            if(scope.cell.state === 'flagged') {
+                changeState(element, scope.cell, 'unsure');
+            }
+            else if(scope.cell.state == 'unsure') {
+                changeState(element, scope.cell, 'untouched');
+            }
+            else {
+                changeState(element, scope.cell, 'flagged');
+            }
+            e.preventDefault();
         });
     }
 
@@ -109,5 +140,8 @@ mswApp.directive('cell', function(){
         restrict : 'E',
         link : link,
         replace : true,
+        scope : {
+            cell : '='
+        }
     };
 });
