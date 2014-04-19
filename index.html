@@ -27,7 +27,7 @@
             </div>
 
             <div data-ng-controller="appController" class="game-board">
-                <cell data-ng-repeat="cell in gameBoard.cells" data-ng-class="cell.cssClass" data-cell="cell"></cell>
+                <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells" data-ng-class="{ 'last-in-row': ($index + 1) % 9 == 0}"></cell>
             </div>
         </div>
 

@@ -3,7 +3,8 @@ var mswApp = angular.module('mswApp', []);
 mswApp.controller('appController', function($scope){
     $scope.gameBoard = {
         cells : [
-            { type : 'one'},
+            { type : 'one',
+             state : 'untouched'},
             { type : 'two'},
             { type : 'three'},
             { type : 'four'},
@@ -11,8 +12,7 @@ mswApp.controller('appController', function($scope){
             { type : 'six'},
             { type : 'seven'},
             { type : 'eight'},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : 'mine'},
             { type : 'flagged'},
@@ -22,8 +22,7 @@ mswApp.controller('appController', function($scope){
             { type : 'mine death'},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : 'bomb'},
             { type : ''},
@@ -33,8 +32,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -44,8 +42,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -55,8 +52,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -66,8 +62,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -77,8 +72,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -88,8 +82,7 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'},
+            { type : ''},
 
             { type : ''},
             { type : ''},
@@ -99,39 +92,44 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''},
-            { type : '',
-             cssClass : 'last-in-row'}
-        ]
+            { type : ''}
+        ],
+        state : 'alive'
     };
+
+    $scope.$watch('gameBoard.cells', function(newCells) {
+        angular.forEach(newCells, function(cell){
+            if(cell.state === 'mine') {
+                console.log('Game over');
+            }
+        });
+    },
+    true);
 });
 
 mswApp.directive('cell', function(){
-
-    function changeState(element, cell, newState) {
-        element.removeClass(cell.state);
-        cell.state = newState;
-        element.addClass(cell.state);
-    }
 
     function link(scope, element, attrs) {
 
         element.bind('click', function(){
             if(scope.cell.state !== 'flagged') {
-                changeState(element, scope.cell, scope.cell.type);
+                scope.cell.state = scope.cell.type;
             }
+            scope.$apply();
         });
 
         element.bind('contextmenu', function(e){
             if(scope.cell.state === 'flagged') {
-                changeState(element, scope.cell, 'unsure');
+                scope.cell.state = 'unsure';
             }
             else if(scope.cell.state == 'unsure') {
-                changeState(element, scope.cell, 'untouched');
+                scope.cell.state = 'untouched';
             }
             else {
-                changeState(element, scope.cell, 'flagged');
+                scope.cell.state = 'flagged';
             }
             e.preventDefault();
+            scope.$apply();
         });
     }
 
@@ -140,8 +138,6 @@ mswApp.directive('cell', function(){
         restrict : 'E',
         link : link,
         replace : true,
-        scope : {
-            cell : '='
-        }
+        scope : false
     };
 });
