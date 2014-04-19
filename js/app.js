@@ -1,10 +1,38 @@
-var mswApp = angular.module('mswApp', []);
+var kbMinesweeper = (function(angular) {
 
-mswApp.controller('appController', function($scope){
-    $scope.gameBoard = {
-        cells : [
+    var app = angular.module('kbMinesweeper', []);
+
+    var ONE = 'one',
+        TWO = 'two',
+        THREE = 'three',
+        FOUR = 'four',
+        FIVE = 'five',
+        SIX = 'six',
+        SEVEN = 'seven',
+        EIGHT = 'eight',
+        UNTOUCEHD = 'untouched',
+        CLEAR = 'clear',
+        FLAGGED = 'flagged',
+        UNSURE = 'unsure',
+        MINE = 'mine',
+        DEATH_MINE_CLASS = 'death-mine',
+        X_MINE_CLASS = 'x-mine';
+
+    app.service('gameBoardService', function(){
+
+        var addMines = function(cellArray, numOfMines){
+            for(var i = 0; i < numOfMines; i+=1) {
+
+                var max = cellArray.length;
+                var min = 1;
+                var index = Math.floor(Math.random()*(max-min+1)+min);
+                cellArray[index].type = MINE;
+            }
+        };
+
+        var cells = [
             { type : 'one',
-             state : 'untouched'},
+                state : 'untouched'},
             { type : 'two'},
             { type : 'three'},
             { type : 'four'},
@@ -14,17 +42,17 @@ mswApp.controller('appController', function($scope){
             { type : 'eight'},
             { type : ''},
 
-            { type : 'mine'},
-            { type : 'flagged'},
-            { type : 'clear'},
-            { type : 'flagged unsure'},
             { type : ''},
-            { type : 'mine death'},
+            { type : ''},
+            { type : 'clear'},
+            { type : ''},
+            { type : ''},
+            { type : ''},
             { type : ''},
             { type : ''},
             { type : ''},
 
-            { type : 'bomb'},
+            { type : ''},
             { type : ''},
             { type : ''},
             { type : ''},
@@ -93,51 +121,71 @@ mswApp.controller('appController', function($scope){
             { type : ''},
             { type : ''},
             { type : ''}
-        ],
-        state : 'alive'
-    };
+        ];
 
-    $scope.$watch('gameBoard.cells', function(newCells) {
-        angular.forEach(newCells, function(cell){
-            if(cell.state === 'mine') {
-                console.log('Game over');
+        return {
+            generate : function(){
+
+                addMines(cells, 10);
+
+                return {
+                    cells : cells
+                }
             }
-        });
-    },
-    true);
-});
+        };
+    });
 
-mswApp.directive('cell', function(){
+    app.controller('appController', function($scope, gameBoardService){
+        $scope.gameBoard = {};
+        $scope.gameBoard.cells = gameBoardService.generate().cells;
 
-    function link(scope, element, attrs) {
+        $scope.$watch('gameBoard.cells', function(newCells) {
+                angular.forEach(newCells, function(cell){
+                    if(cell.state === 'mine') {
+                        console.log('Game over');
+                    }
+                });
+            },
+            true);
+    });
 
-        element.bind('click', function(){
-            if(scope.cell.state !== 'flagged') {
-                scope.cell.state = scope.cell.type;
-            }
-            scope.$apply();
-        });
+    app.directive('cell', function(){
 
-        element.bind('contextmenu', function(e){
-            if(scope.cell.state === 'flagged') {
-                scope.cell.state = 'unsure';
-            }
-            else if(scope.cell.state == 'unsure') {
-                scope.cell.state = 'untouched';
-            }
-            else {
-                scope.cell.state = 'flagged';
-            }
-            e.preventDefault();
-            scope.$apply();
-        });
-    }
+        function link(scope, element, attrs) {
 
-    return {
-        template : '<div class="cell"></div>',
-        restrict : 'E',
-        link : link,
-        replace : true,
-        scope : false
-    };
-});
+            element.bind('click', function(){
+                if(scope.cell.state !== FLAGGED) {
+                    scope.cell.state = scope.cell.type;
+                }
+                scope.$apply();
+            });
+
+            element.bind('contextmenu', function(e){
+
+                if(scope.cell.state === FLAGGED) {
+                    scope.cell.state = UNSURE;
+                }
+                else if(scope.cell.state === UNSURE) {
+                    scope.cell.state = UNTOUCEHD;
+                }
+                else {
+                    scope.cell.state = FLAGGED;
+                }
+                //Prevent default browser right click context menu.
+                e.preventDefault();
+                //Apply up to parent scope.
+                scope.$apply();
+            });
+        }
+
+        return {
+            template : '<div class="cell"></div>',
+            restrict : 'E',
+            link : link,
+            replace : true,
+            scope : false
+        };
+    });
+}(angular));
+
+
