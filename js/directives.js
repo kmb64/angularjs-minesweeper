@@ -18,15 +18,19 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
                 scope.cell.state = UNSURE;
             }
             else if(scope.cell.state === UNSURE) {
-                scope.cell.state = UNTOUCEHD;
+                scope.cell.state = UNTOUCHED;
             }
-            else if(scope.cell.state === UNTOUCEHD) {
+            else if(scope.cell.state === UNTOUCHED) {
                 scope.cell.state = FLAGGED;
             }
             //Prevent default browser right click context menu.
             e.preventDefault();
             //Apply up to parent scope.
             scope.$apply();
+        });
+
+        element.bind('dblclick', function(){
+            //TODO: Implement double click behaviour.
         });
     }
 

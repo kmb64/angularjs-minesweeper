@@ -7,7 +7,7 @@ app.service('gameBoardService', function(){
             cells.push(
                 {
                     type : '',
-                    state : UNTOUCEHD,
+                    state : UNTOUCHED,
                     index : i
                 }
             );
@@ -29,7 +29,7 @@ app.service('gameBoardService', function(){
 
     var clearSurroundingCells = function(index) {
         angular.forEach(getSurroundingCells(index), function(cell){
-            if(cell.state === UNTOUCEHD) {
+            if(cell.state === UNTOUCHED) {
                 if(cell.type === CLEAR) {
                     cell.state = cell.type;
                     clearSurroundingCells(cell.index);

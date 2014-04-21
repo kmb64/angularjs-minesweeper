@@ -4,19 +4,21 @@ app.controller('appController', function($scope, gameBoardService){
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
 
-    $scope.$watch('gameBoard.cells', function(newCells) {
+    var unregisterCellWatch = $scope.$watch('gameBoard.cells', function(newCells) {
+            var gameOver = false;
             angular.forEach(newCells, function(cell){
                 //Game over
-                if(cell.state === MINE) {
+                if(cell.state === MINE && !gameOver) {
                     cell.type = DEATH_MINE_CLASS;
-                    //Stop watching
                     revealCells();
+                    gameOver = true;
                 }
             });
         },
         true);
 
     var revealCells = function() {
+        unregisterCellWatch();
         angular.forEach($scope.gameBoard.cells, function(cell){
             cell.state = cell.type;
         });
