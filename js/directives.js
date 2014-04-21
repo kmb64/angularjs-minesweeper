@@ -1,4 +1,4 @@
-app.directive('cell', function(){
+app.directive('cell', ['gameBoardService', function(gameBoardService){
 
     function link(scope, element, attrs) {
 
@@ -37,4 +37,4 @@ app.directive('cell', function(){
         replace : true,
         scope : false
     };
-});
+}]);

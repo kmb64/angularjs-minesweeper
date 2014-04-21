@@ -1,24 +1,25 @@
 app.service('gameBoardService', function(){
 
-    var createCells = function(){
-        var cells = [];
+    var cells = [];
+
+    var populateCells = function(){
         for(var i = 0; i < 81; i+=1) {
             cells.push(
                 {
                     type : '',
-                    state : ''
+                    state : '',
+                    index : i
                 }
             );
         }
-        return cells;
     };
 
-    var addMines = function(cellArray, numOfMines){
+    var addMines = function(numOfMines){
         for(var i = 0; i < numOfMines; i+=1) {
-            var max = cellArray.length;
+            var max = cells.length -1;
             var min = 1;
             var index = Math.floor(Math.random()*(max-min+1)+min);
-            cellArray[index].type = MINE;
+            cells[index].type = MINE;
         }
     };
 
@@ -26,45 +27,45 @@ app.service('gameBoardService', function(){
         return cell.type === MINE;
     };
 
-    var getSurroundingCells = function(index, cellsArray){
+    var getSurroundingCells = function(index){
         var surroundingCells = [];
         if(index > 8) {
             //Check above, left
             if(index % 9 !== 0) {
-                surroundingCells.push(cellsArray[index - 10]);
+                surroundingCells.push(cells[index - 10]);
             }
             //Check above, right
             if(index % 9 !== 8) {
-                surroundingCells.push(cellsArray[index - 8]);
+                surroundingCells.push(cells[index - 8]);
             }
-            surroundingCells.push(cellsArray[index - 9])
+            surroundingCells.push(cells[index - 9])
         }
         //Check right
         if(index % 9 !== 8) {
-            surroundingCells.push(cellsArray[index + 1]);
+            surroundingCells.push(cells[index + 1]);
         }
         //Check below
         if(index < 72) {
             //Check below, left
             if(index % 9 !== 0) {
-                surroundingCells.push(cellsArray[index + 8]);
+                surroundingCells.push(cells[index + 8]);
             }
             //Check below, right
             if(index % 9 !== 8) {
-                surroundingCells.push(cellsArray[index + 10]);
+                surroundingCells.push(cells[index + 10]);
             }
-            surroundingCells.push(cellsArray[index + 9]);
+            surroundingCells.push(cells[index + 9]);
         }
         //Check left
         if(index % 9 !== 0) {
-            surroundingCells.push(cellsArray[index - 1]);
+            surroundingCells.push(cells[index - 1]);
         }
         return surroundingCells;
     };
 
-    var minesBesideMe = function(index, cellsArray) {
+    var minesBesideMe = function(index) {
         var count = 0;
-        angular.forEach(getSurroundingCells(index, cellsArray), function(cell){
+        angular.forEach(getSurroundingCells(index, cells), function(cell){
             if(theresAMine(cell)) {
                 count += 1;
             }
@@ -72,27 +73,27 @@ app.service('gameBoardService', function(){
         return count;
     };
 
-
-    var addNumbers = function(cells) {
+    var addNumbers = function() {
         var i = 0;
         angular.forEach(cells, function(cell){
             if(cell.type !== MINE) {
-                cell.type = TYPES[minesBesideMe(i, cells)];
+                cell.type = TYPES[minesBesideMe(i)];
             }
             i+=1;
         });
     };
 
-    return {
-        generate : function(){
-
-            var cells = createCells();
-            addMines(cells, 10);
-            addNumbers(cells);
-
-            return {
-                cells : cells
-            }
+    var setup = function(){
+        populateCells();
+        addMines(10);
+        addNumbers();
+        return {
+            cells : cells
         }
+    };
+
+    return {
+        setup : setup,
+        getSurroundingCells : getSurroundingCells
     };
 });
