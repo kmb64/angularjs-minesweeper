@@ -14,13 +14,37 @@ app.service('gameBoardService', function(){
         }
     };
 
-    var addMines = function(numOfMines){
-        for(var i = 0; i < numOfMines; i+=1) {
-            var max = cells.length -1;
-            var min = 1;
-            var index = Math.floor(Math.random()*(max-min+1)+min);
-            cells[index].type = MINE;
+    var getRandomIndex = function(min, max) {
+        return Math.floor(Math.random()*(max-min+1)+min);
+    };
+
+    var getUniqueRandomIndex = function(min, max, usedIndexes) {
+      var index = getRandomIndex(min, max);
+        var used = false;
+        for( var i = 0; i <= usedIndexes.length; i+=1) {
+            if(usedIndexes[i] === index) {
+                used = true;
+            }
         }
+        if(!used) {
+            return index;
+        }
+        //Not unique try again
+        else {
+            return getUniqueRandomIndex(min, max, usedIndexes);
+        }
+    };
+
+    var addMines = function(numOfMines){
+        var max = cells.length -1;
+        var min = 1;
+        var usedIndexes = [];
+        for(var i = 0; i < numOfMines; i+=1) {
+            var index = getUniqueRandomIndex(min, max, usedIndexes);
+            console.log(index);
+            cells[index].type = MINE;
+            usedIndexes.push(index);
+    }
     };
 
     var theresAMine = function(cell) {
