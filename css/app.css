@@ -12,7 +12,7 @@
 
 .minesweeper .scoreboard .game-status {
     margin: 0;
-    color : #ff0000;
+    color : #fa0f4a;
     text-align : center;
 }
 
@@ -28,8 +28,41 @@
     display : inline-block;
     float : left;
     margin : 1px 1px 0 0;
-    background : #808080;
+    /*background : #808080;*/
     text-align : center;
+
+    -moz-box-shadow:inset 0px 1px 3px 0px #464c78;
+    -webkit-box-shadow:inset 0px 1px 3px 0px #464c78;
+    box-shadow:inset 0px 1px 3px 0px #464c78;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #4e5266), color-stop(1, #5f627d));
+    background:-moz-linear-gradient(top, #4e5266 5%, #5f627d 100%);
+    background:-webkit-linear-gradient(top, #4e5266 5%, #5f627d 100%);
+    background:-o-linear-gradient(top, #4e5266 5%, #5f627d 100%);
+    background:-ms-linear-gradient(top, #4e5266 5%, #5f627d 100%);
+    background:linear-gradient(to bottom, #4e5266 5%, #5f627d 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#4e5266', endColorstr='#5f627d',GradientType=0);
+    background-color:#4e5266;
+    /*-moz-border-radius:2px;*/
+    /*-webkit-border-radius:2px;*/
+    /*border-radius:2px;*/
+    display:inline-block;
+    font-weight:bold;
+}
+
+.minesweeper .game-board .cell:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5f627d), color-stop(1, #4e5266));
+    background:-moz-linear-gradient(top, #5f627d 5%, #4e5266 100%);
+    background:-webkit-linear-gradient(top, #5f627d 5%, #4e5266 100%);
+    background:-o-linear-gradient(top, #5f627d 5%, #4e5266 100%);
+    background:-ms-linear-gradient(top, #5f627d 5%, #4e5266 100%);
+    background:linear-gradient(to bottom, #5f627d 5%, #4e5266 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f627d', endColorstr='#4e5266',GradientType=0);
+    background-color:#5f627d;
+}
+
+.minesweeper .game-board .cell:active {
+    position:relative;
+    top:1px;
 }
 
 .minesweeper .game-board .cell.flagged {
@@ -57,7 +90,7 @@
 }
 
 .minesweeper .game-board .cell.death {
-    background : #ff0000;
+    background : #fa0f4a;
 }
 
 .minesweeper .game-board .cell.death:before {
@@ -84,7 +117,7 @@
 
 .minesweeper .game-board .cell.three {
     background : #fff;
-    color : #ff0000;
+    color : #fa0f4a;
 }
 
 .minesweeper .game-board .cell.three:before {
