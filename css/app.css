@@ -10,6 +10,12 @@
     height: 70px;
 }
 
+.minesweeper .scoreboard .game-status {
+    margin: 0;
+    color : #ff0000;
+    text-align : center;
+}
+
 .minesweeper .game-board {
     width : 188px;
     height : 189px;
@@ -50,8 +56,12 @@
     content : "*";
 }
 
-.minesweeper .game-board .cell.mine.death {
+.minesweeper .game-board .cell.death {
     background : #ff0000;
+}
+
+.minesweeper .game-board .cell.death:before {
+    content : "*";
 }
 
 .minesweeper .game-board .cell.one {
