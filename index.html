@@ -21,12 +21,12 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div data-ng-app="kbMinesweeper" class="minesweeper">
+        <div data-ng-app="kbMinesweeper" data-ng-controller="appController" class="minesweeper">
             <div class="scoreboard">
-
+                <h3 class="game-status">{{scoreBoard.gameStatus}}</h3>
             </div>
 
-            <div data-ng-controller="appController" class="game-board">
+            <div class="game-board">
                 <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells" data-ng-class="{ 'last-in-row': ($index + 1) % 9 == 0}"></cell>
             </div>
         </div>

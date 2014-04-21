@@ -13,7 +13,7 @@ var ONE = 'one',
     FLAGGED = 'flagged',
     UNSURE = 'unsure',
     MINE = 'mine',
-    DEATH_MINE_CLASS = 'death-mine',
+    DEATH_MINE_CLASS = 'death',
     X_MINE_CLASS = 'x-mine';
 
 var TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT];

@@ -4,7 +4,7 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
 
         element.bind('click', function(){
             if(scope.cell.type === CLEAR) {
-                //clearSurroundingCells
+                gameBoardService.clearSurroundingCells(scope.cell.index);
             }
             if(scope.cell.state !== FLAGGED) {
                 scope.cell.state = scope.cell.type;
@@ -20,7 +20,7 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
             else if(scope.cell.state === UNSURE) {
                 scope.cell.state = UNTOUCEHD;
             }
-            else {
+            else if(scope.cell.state === UNTOUCEHD) {
                 scope.cell.state = FLAGGED;
             }
             //Prevent default browser right click context menu.
