@@ -6,6 +6,7 @@ app.controller('appController', function($scope, gameBoardService){
 
     var unregisterCellWatch = $scope.$watch('gameBoard.cells', function(newCells) {
             var gameOver = false;
+            var cleared = 0;
             angular.forEach(newCells, function(cell){
                 //Game over
                 if(cell.state === MINE && !gameOver) {
@@ -13,7 +14,13 @@ app.controller('appController', function($scope, gameBoardService){
                     revealCells();
                     gameOver = true;
                 }
+                if(cell.state !== UNTOUCHED) {
+                    cleared += 1;
+                }
             });
+            if(!gameOver && cleared === 81) {
+                $scope.scoreBoard.gameStatus = 'You win!';
+            }
         },
         true);
 
