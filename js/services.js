@@ -7,7 +7,7 @@ app.service('gameBoardService', function(){
             cells.push(
                 {
                     type : '',
-                    state : '',
+                    state : UNTOUCEHD,
                     index : i
                 }
             );
@@ -25,6 +25,20 @@ app.service('gameBoardService', function(){
 
     var theresAMine = function(cell) {
         return cell.type === MINE;
+    };
+
+    var clearSurroundingCells = function(index) {
+        angular.forEach(getSurroundingCells(index), function(cell){
+            if(cell.state === UNTOUCEHD) {
+                if(cell.type === CLEAR) {
+                    cell.state = cell.type;
+                    clearSurroundingCells(cell.index);
+                }
+                else{
+                    cell.state = cell.type;
+                }
+            }
+        });
     };
 
     var getSurroundingCells = function(index){
@@ -89,11 +103,12 @@ app.service('gameBoardService', function(){
         addNumbers();
         return {
             cells : cells
-        }
+        };
     };
 
     return {
         setup : setup,
-        getSurroundingCells : getSurroundingCells
+        getSurroundingCells : getSurroundingCells,
+        clearSurroundingCells : clearSurroundingCells
     };
 });
