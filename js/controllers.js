@@ -1,6 +1,6 @@
 app.controller('appController', function($scope, gameBoardService){
     $scope.gameBoard = {};
-    $scope.gameBoard.cells = gameBoardService.generate().cells;
+    $scope.gameBoard.cells = gameBoardService.setup().cells;
 
     $scope.$watch('gameBoard.cells', function(newCells) {
             angular.forEach(newCells, function(cell){
