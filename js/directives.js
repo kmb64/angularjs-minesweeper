@@ -30,7 +30,10 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
         });
 
         element.bind('dblclick', function(){
-            //TODO: Implement double click behaviour.
+            if(scope.cell.state !== UNTOUCHED && scope.cell.state !== FLAGGED && scope.cell.state !== UNSURE) {
+                gameBoardService.clearIfFlagged(scope.cell.index);
+            }
+            scope.$apply();
         });
     }
 

@@ -29,7 +29,7 @@ app.service('gameBoardService', function(){
         if(!used) {
             return index;
         }
-        //Not unique try again
+        //Not unique, try again
         else {
             return getUniqueRandomIndex(min, max, usedIndexes);
         }
@@ -41,14 +41,23 @@ app.service('gameBoardService', function(){
         var usedIndexes = [];
         for(var i = 0; i < numOfMines; i+=1) {
             var index = getUniqueRandomIndex(min, max, usedIndexes);
-            console.log(index);
             cells[index].type = MINE;
             usedIndexes.push(index);
-    }
+        }
     };
 
     var theresAMine = function(cell) {
         return cell.type === MINE;
+    };
+    
+    var clearIfFlagged = function(index){
+        angular.forEach(getSurroundingCells(index), function(cell){
+            var flag = false;
+            if(cell.state === FLAGGED && !flag) {
+                clearSurroundingCells(index);
+                flag = true;
+            }
+        });
     };
 
     var clearSurroundingCells = function(index) {
@@ -133,6 +142,7 @@ app.service('gameBoardService', function(){
     return {
         setup : setup,
         getSurroundingCells : getSurroundingCells,
-        clearSurroundingCells : clearSurroundingCells
+        clearSurroundingCells : clearSurroundingCells,
+        clearIfFlagged : clearIfFlagged
     };
 });
