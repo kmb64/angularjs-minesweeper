@@ -60,13 +60,13 @@
     background-color:#5f627d;
 }
 
-.minesweeper .game-board .cell:active {
+.minesweeper .game-board .cell.untouched:active {
     position:relative;
     top:1px;
 }
 
 .minesweeper .game-board .cell.flagged {
-    background : #b3d4fc;
+    background : #b3d4fc url('icons/flag.png') center no-repeat;
 }
 
 .minesweeper .game-board .cell.unsure {
@@ -82,20 +82,20 @@
 }
 
 .minesweeper .game-board .cell.mine {
-    background : #fff;
+    background : #fff url('icons/bomb.png') center no-repeat;
 }
 
-.minesweeper .game-board .cell.mine:before {
-    content : "*";
-}
+/*.minesweeper .game-board .cell.mine:before {*/
+    /*content : "*";*/
+/*}*/
 
 .minesweeper .game-board .cell.death {
-    background : #fa0f4a;
+    background : #fa0f4a url('icons/bomb.png') center no-repeat;
 }
 
-.minesweeper .game-board .cell.death:before {
-    content : "*";
-}
+/*.minesweeper .game-board .cell.death:before {*/
+    /*content : "*";*/
+/*}*/
 
 .minesweeper .game-board .cell.one {
     background : #fff;
