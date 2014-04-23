@@ -13,6 +13,10 @@ var ONE = 'one',
     FLAGGED = 'flagged',
     UNSURE = 'unsure',
     MINE = 'mine',
-    DEATH_MINE_CLASS = 'death';
+    DEATH_MINE_CLASS = 'death',
+    MINE_COUNT = 10,
+    ROWS = 9,
+    COLS = 9,
+    CELL_COUNT = ROWS * COLS;
 
 var TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT];

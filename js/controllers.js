@@ -18,7 +18,7 @@ app.controller('appController', function($scope, gameBoardService){
                     cleared += 1;
                 }
             });
-            if(!gameOver && cleared === 81) {
+            if(!gameOver && cleared === CELL_COUNT) {
                 $scope.scoreBoard.gameStatus = 'You win!';
             }
         },

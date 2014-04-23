@@ -3,7 +3,7 @@ app.service('gameBoardService', function(){
     var cells = [];
 
     var populateCells = function(){
-        for(var i = 0; i < 81; i+=1) {
+        for(var i = 0; i < CELL_COUNT; i+=1) {
             cells.push(
                 {
                     type : '',
@@ -35,11 +35,11 @@ app.service('gameBoardService', function(){
         }
     };
 
-    var addMines = function(numOfMines){
+    var addMines = function(){
         var max = cells.length -1;
         var min = 1;
         var usedIndexes = [];
-        for(var i = 0; i < numOfMines; i+=1) {
+        for(var i = 0; i < MINE_COUNT; i+=1) {
             var index = getUniqueRandomIndex(min, max, usedIndexes);
             cells[index].type = MINE;
             usedIndexes.push(index);
@@ -76,35 +76,35 @@ app.service('gameBoardService', function(){
 
     var getSurroundingCells = function(index){
         var surroundingCells = [];
-        if(index > 8) {
+        if(index > COLS -1) {
             //Check above, left
-            if(index % 9 !== 0) {
-                surroundingCells.push(cells[index - 10]);
+            if(index % COLS !== 0) {
+                surroundingCells.push(cells[index - (COLS + 1)]);
             }
             //Check above, right
-            if(index % 9 !== 8) {
-                surroundingCells.push(cells[index - 8]);
+            if(index % COLS !== (COLS -1)) {
+                surroundingCells.push(cells[index - (COLS - 1)]);
             }
-            surroundingCells.push(cells[index - 9])
+            surroundingCells.push(cells[index - COLS])
         }
         //Check right
-        if(index % 9 !== 8) {
+        if(index % COLS !== (COLS -1)) {
             surroundingCells.push(cells[index + 1]);
         }
         //Check below
-        if(index < 72) {
+        if(index < (CELL_COUNT - COLS)) {
             //Check below, left
-            if(index % 9 !== 0) {
-                surroundingCells.push(cells[index + 8]);
+            if(index % COLS !== 0) {
+                surroundingCells.push(cells[index + (COLS -1)]);
             }
             //Check below, right
-            if(index % 9 !== 8) {
-                surroundingCells.push(cells[index + 10]);
+            if(index % COLS !== (COLS -1)) {
+                surroundingCells.push(cells[index + (COLS + 1)]);
             }
-            surroundingCells.push(cells[index + 9]);
+            surroundingCells.push(cells[index + COLS]);
         }
         //Check left
-        if(index % 9 !== 0) {
+        if(index % COLS !== 0) {
             surroundingCells.push(cells[index - 1]);
         }
         return surroundingCells;
@@ -132,7 +132,7 @@ app.service('gameBoardService', function(){
 
     var setup = function(){
         populateCells();
-        addMines(10);
+        addMines();
         addNumbers();
         return {
             cells : cells
