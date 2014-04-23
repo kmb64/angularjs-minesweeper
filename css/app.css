@@ -1,7 +1,8 @@
 .minesweeper {
     margin: 20px;
-    border : 1px solid #000;
-    width: 188px;
+    display: inline-block;
+    /*border : 1px solid #000;*/
+    /*width: 188px;*/
 }
 
 .minesweeper .scoreboard {
@@ -17,9 +18,12 @@
 }
 
 .minesweeper .game-board {
-    width : 188px;
-    height : 189px;
+    /*width : 189px;*/
+    /*height : 189px;*/
     background : #000;
+    overflow: hidden;
+    padding: 0 0 1px 1px;
+
 }
 
 .minesweeper .game-board .cell {

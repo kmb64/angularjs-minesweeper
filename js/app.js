@@ -14,9 +14,9 @@ var ONE = 'one',
     UNSURE = 'unsure',
     MINE = 'mine',
     DEATH_MINE_CLASS = 'death',
-    MINE_COUNT = 10,
-    ROWS = 9,
-    COLS = 9,
+    MINE_COUNT = 99,
+    ROWS = 16,
+    COLS = 30,
     CELL_COUNT = ROWS * COLS;
 
 var TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT];

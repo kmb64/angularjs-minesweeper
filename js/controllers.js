@@ -3,6 +3,7 @@ app.controller('appController', function($scope, gameBoardService){
     $scope.scoreBoard = {};
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
+    $scope.gameBoard.width = COLS * 20 + COLS;
 
     var unregisterCellWatch = $scope.$watch('gameBoard.cells', function(newCells) {
             var gameOver = false;

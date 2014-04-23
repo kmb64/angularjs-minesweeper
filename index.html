@@ -26,8 +26,9 @@
                 <h3 class="game-status">{{scoreBoard.gameStatus}}</h3>
             </div>
 
-            <div class="game-board">
-                <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells" data-ng-class="{ 'last-in-row': ($index + 1) % 9 == 0}"></cell>
+            <div class="game-board" style="width : {{gameBoard.width}}px;">
+                <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
+                <!--data-ng-class="{ 'last-in-row': ($index + 1) % 9 == 0}"-->
             </div>
         </div>
 
