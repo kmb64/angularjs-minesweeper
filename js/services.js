@@ -51,13 +51,15 @@ app.service('gameBoardService', function(){
     };
     
     var clearIfFlagged = function(index){
+        var flags = 0;
         angular.forEach(getSurroundingCells(index), function(cell){
-            var flag = false;
-            if(cell.state === FLAGGED && !flag) {
-                clearSurroundingCells(index);
-                flag = true;
+            if (cell.state === FLAGGED) {
+                flags +=1;
             }
         });
+        if(TYPES[flags] === cells[index].type) {
+            clearSurroundingCells(index);
+        }
     };
 
     var clearSurroundingCells = function(index) {
