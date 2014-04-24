@@ -6,9 +6,29 @@
 }
 
 .minesweeper .scoreboard {
-    background: #fff;
-    width : 188px;
+    background: #000;
     height: 70px;
+    text-align: center;
+}
+
+.minesweeper .scoreboard .panel {
+    width : 33%;
+    height: 50px;
+    background : #fff;
+    display: inline-block;
+}
+
+.minesweeper .scoreboard .panel.timer {
+    float : left;
+}
+
+.minesweeper .scoreboard .panel.smiley-buttons {
+    text-align: center;
+    background: gray;
+}
+
+.minesweeper .scoreboard .panel.mines-left {
+    float : right;
 }
 
 .minesweeper .scoreboard .game-status {

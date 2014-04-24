@@ -23,7 +23,10 @@
 
         <div data-ng-app="kbMinesweeper" data-ng-controller="appController" class="minesweeper">
             <div class="scoreboard">
-                <h3 class="game-status">{{scoreBoard.gameStatus}}</h3>
+              <div class="panel timer"></div>
+              <div class="panel smiley-buttons"></div>
+              <div class="panel mines-left"></div>
+                <!--<h3 class="game-status">{{scoreBoard.gameStatus}}</h3>-->
             </div>
 
             <div class="game-board" style="width : {{gameBoard.width}}px;">
