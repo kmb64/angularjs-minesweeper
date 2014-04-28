@@ -6,29 +6,58 @@
 }
 
 .minesweeper .scoreboard {
-    background: #000;
-    height: 70px;
+    /*background: #000;*/
+    height: 76px;
     text-align: center;
+    border : #000 1px solid;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
 }
 
 .minesweeper .scoreboard .panel {
-    width : 33%;
-    height: 50px;
+    margin : 6px 0 0 0;
+    /*min-width : 40px;*/
+    width : 30%;
+    height: 64px;
     background : #fff;
     display: inline-block;
+    text-align: center;
+    vertical-align : middle;
 }
 
 .minesweeper .scoreboard .panel.timer {
     float : left;
 }
 
+.minesweeper .scoreboard .panel.timer .display {
+    width: 40px;
+    height: 32px;
+    background : url('icons/timer.png') 0px no-repeat;
+    border-radius : 3px;
+    display: inline-block;
+    margin: 18px 0 0 0;
+}
+
+
 .minesweeper .scoreboard .panel.smiley-buttons {
     text-align: center;
-    background: gray;
+    /*background: gray;*/
+    min-width: 64px;
+    background : #fff url('icons/big_smile-64.png') center no-repeat;
+    border-radius : 3px;
 }
 
 .minesweeper .scoreboard .panel.mines-left {
     float : right;
+}
+
+.minesweeper .scoreboard .panel.mines-left .display {
+    width: 40px;
+    height: 32px;
+    background : url('icons/bomb-32.png') 0px no-repeat;
+    border-radius : 3px;
+    display: inline-block;
+    margin: 18px 0 0 0;
 }
 
 .minesweeper .scoreboard .game-status {
