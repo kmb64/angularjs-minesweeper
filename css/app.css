@@ -32,20 +32,44 @@
 .minesweeper .scoreboard .panel.timer .display {
     width: 40px;
     height: 32px;
-    background : url('icons/timer.png') 0px no-repeat;
+    background : url('icons/timer-big.png') 0px no-repeat;
     border-radius : 3px;
     display: inline-block;
     margin: 18px 0 0 0;
 }
 
 
-.minesweeper .scoreboard .panel.smiley-buttons {
+.minesweeper .scoreboard .panel.smiley-button {
     text-align: center;
     /*background: gray;*/
     min-width: 64px;
-    background : #fff url('icons/big_smile-64.png') center no-repeat;
     border-radius : 3px;
+    cursor : pointer;
+    position: relative;
 }
+
+.minesweeper .scoreboard .panel.smiley-button:active {
+    top : 1px;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.alive {
+    background : #fff url('icons/alive-big.png') center no-repeat;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.flinch {
+    background : #fff url('icons/flinch-big.png') center no-repeat;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.dead {
+    background : #fff url('icons/dead-big.png') center no-repeat;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.won {
+    background : #fff url('icons/won-big.png') center no-repeat;
+}
+
+
+
 
 .minesweeper .scoreboard .panel.mines-left {
     float : right;
@@ -54,10 +78,11 @@
 .minesweeper .scoreboard .panel.mines-left .display {
     width: 40px;
     height: 32px;
-    background : url('icons/bomb-32.png') 0px no-repeat;
+    background : url('icons/bomb-big.png') 0px no-repeat;
     border-radius : 3px;
     display: inline-block;
     margin: 18px 0 0 0;
+    float : left;
 }
 
 .minesweeper .scoreboard .game-status {
