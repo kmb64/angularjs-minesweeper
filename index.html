@@ -27,7 +27,7 @@
                   <div class="display"></div>
               </div>
               <!--<div class="panel smiley-button flinch"></div>-->
-              <smiley-button></smiley-button>
+              <smiley-button ng-class="smileyFace"></smiley-button>
               <div class="panel mines-left">
                   <div class="display">
                       <div class="10s-col"></div>
@@ -36,6 +36,8 @@
               </div>
                 <!--<h3 class="game-status">{{scoreBoard.gameStatus}}</h3>-->
             </div>
+
+          <!--ng-click="setSmileyFace('flinch')"-->
 
             <div class="game-board" style="width : {{gameBoard.width}}px;">
                 <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>

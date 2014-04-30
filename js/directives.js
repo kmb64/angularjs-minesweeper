@@ -44,6 +44,8 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
           //Left mouse button
           case 1:
             leftMouseDown = true;
+            scope.setSmileyFace('flinch');
+            scope.$apply();
             break;
           //Right mouse button
           case 3:
@@ -51,10 +53,10 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
             break;
           default:
         }
-
       });
 
       element.bind('mouseup', function(){
+        scope.setSmileyFace('alive');
         if(leftMouseDown && rightMouseDown) {
           leftMouseDown = false;
           rightMouseDown = false;
@@ -71,7 +73,7 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
         restrict : 'E',
         link : link,
         replace : true,
-        scope : false
+        scope : true
     };
 }])
   .directive('smileyButton', ['gameBoardService', function(gameBoardService){
@@ -81,11 +83,10 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
          scope.setUp();
          scope.$apply();
       });
-
     };
 
     return {
-      template : '<div class="panel smiley-button flinch"></div>',
+      template : '<div class="panel smiley-button"></div>',
       restrict : 'E',
       link : link,
       replace : true,

@@ -1,8 +1,10 @@
 app.controller('appController', function($scope, gameBoardService){
 
     $scope.setUp = function(){
+
       $scope.gameBoard = {};
       $scope.scoreBoard = {};
+      $scope.smileyFace = 'alive';
       $scope.scoreBoard.gameStatus = '';
       $scope.gameBoard.cells = gameBoardService.setup().cells;
       $scope.gameBoard.width = COLS * 20 + COLS;
@@ -23,6 +25,7 @@ app.controller('appController', function($scope, gameBoardService){
           });
           if(!gameOver && cleared === CELL_COUNT) {
             $scope.scoreBoard.gameStatus = 'You win!';
+            $scope.setSmileyFace('won');
           }
         },
         true);
@@ -33,7 +36,12 @@ app.controller('appController', function($scope, gameBoardService){
           cell.state = cell.type;
         });
         $scope.scoreBoard.gameStatus = 'Game over';
+        $scope.setSmileyFace('dead');
       };
     };
     $scope.setUp();
+
+    $scope.setSmileyFace = function(smileyFace) {
+      $scope.smileyFace = smileyFace;
+    };
 });
