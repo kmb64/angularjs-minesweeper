@@ -3,6 +3,8 @@ app.service('gameBoardService', function(){
     var cells = [];
 
     var populateCells = function(){
+        //Make sure cells are cleared.
+        cells = [];
         for(var i = 0; i < CELL_COUNT; i+=1) {
             cells.push(
                 {

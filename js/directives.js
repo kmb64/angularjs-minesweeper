@@ -1,6 +1,6 @@
 app.directive('cell', ['gameBoardService', function(gameBoardService){
 
-    function link(scope, element, attrs) {
+    var link = function(scope, element, attrs) {
 
       var rightMouseDown = false,
         leftMouseDown = false;
@@ -64,7 +64,7 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
           scope.$apply();
         }
       });
-    }
+    };
 
     return {
         template : '<div class="cell"></div>',
@@ -73,4 +73,22 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
         replace : true,
         scope : false
     };
-}]);
+}])
+  .directive('smileyButton', ['gameBoardService', function(gameBoardService){
+
+    var link = function(scope, element, attrs){
+      element.bind('click', function(){
+         scope.setUp();
+         scope.$apply();
+      });
+
+    };
+
+    return {
+      template : '<div class="panel smiley-button flinch"></div>',
+      restrict : 'E',
+      link : link,
+      replace : true,
+      scope : false
+    };
+  }]);
