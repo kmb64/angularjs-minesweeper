@@ -19,13 +19,13 @@ var ONE = 'one',
 //    ROWS = 9,
 //    COLS = 9,
 
-    MINE_COUNT = 40,
-    ROWS = 16,
-    COLS = 16,
-
-//    MINE_COUNT = 99,
+//    MINE_COUNT = 40,
 //    ROWS = 16,
-//    COLS = 30,
+//    COLS = 16,
+
+    MINE_COUNT = 99,
+    ROWS = 16,
+    COLS = 30,
 
     CELL_COUNT = ROWS * COLS;
 
