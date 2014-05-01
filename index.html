@@ -26,7 +26,6 @@
               <div class="panel timer">
                   <div class="display"></div>
               </div>
-              <!--<div class="panel smiley-button flinch"></div>-->
               <smiley-button ng-class="smileyFace"></smiley-button>
               <div class="panel mines-left">
                   <div class="display">
@@ -34,15 +33,12 @@
                       <div class="1s-col"></div>
                   </div>
               </div>
-                <!--<h3 class="game-status">{{scoreBoard.gameStatus}}</h3>-->
             </div>
-
-          <!--ng-click="setSmileyFace('flinch')"-->
 
             <div class="game-board" style="width : {{gameBoard.width}}px;">
                 <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
-                <!--data-ng-class="{ 'last-in-row': ($index + 1) % 9 == 0}"-->
             </div>
+            <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>
         </div>
 
         <script src="js/vendor/angular.js"></script>
