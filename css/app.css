@@ -2,7 +2,7 @@
     margin: 20px;
     display: inline-block;
     box-shadow: 0 6px 6px 6px rgba(128,115,112,0.75);
-    border: 8px solid #464c78;
+    border: 8px solid #4e5266;
     border-radius: 6px;
     /*border : 1px solid #000;*/
     /*width: 188px;*/
@@ -15,7 +15,7 @@
     /*border : #000 1px solid;*/
     /*border-top-left-radius: 3px;*/
     /*border-top-right-radius: 3px;*/
-    border-bottom: 8px solid #464c78;
+    border-bottom: 8px solid #4e5266;
 }
 
 .minesweeper .scoreboard .panel {
