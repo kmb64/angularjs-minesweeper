@@ -1,36 +1,38 @@
 var app = angular.module('kbMinesweeper', []);
 
 var ONE = 'one',
-    TWO = 'two',
-    THREE = 'three',
-    FOUR = 'four',
-    FIVE = 'five',
-    SIX = 'six',
-    SEVEN = 'seven',
-    EIGHT = 'eight',
-    UNTOUCHED = 'untouched',
-    CLEAR = 'clear',
-    FLAGGED = 'flagged',
-    UNSURE = 'unsure',
-    MINE = 'mine',
-    DEATH_MINE_CLASS = 'death',
+  TWO = 'two',
+  THREE = 'three',
+  FOUR = 'four',
+  FIVE = 'five',
+  SIX = 'six',
+  SEVEN = 'seven',
+  EIGHT = 'eight',
+  UNTOUCHED = 'untouched',
+  CLEAR = 'clear',
+  FLAGGED = 'flagged',
+  UNSURE = 'unsure',
+  MINE = 'mine',
+  DEATH_MINE_CLASS = 'death',
 
-//    MINE_COUNT = 10,
-//    ROWS = 9,
-//    COLS = 9,
+  mineCount,
+  rows,
+  cols,
+  cellCount;
 
-//    MINE_COUNT = 40,
-//    ROWS = 16,
-//    COLS = 16,
+//cellCount = rows * cols;
 
-    MINE_COUNT = 99,
-    ROWS = 16,
-    COLS = 30,
+//    mineCount = 40,
+//    rows = 16,
+//    cols = 16,
 
-    CELL_COUNT = ROWS * COLS;
+//    mineCount = 99,
+//    rows = 16,
+//    cols = 30,
 
-    //beginner : 9 x 9 (10)
-    //intermediate : 16 x 16 (40)
-    //expert : 16 x 30 (99)
+
+//    beginner : 9 x 9 (10)
+//    intermediate : 16 x 16 (40)
+//    expert : 16 x 30 (99)
 
 var TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT];
