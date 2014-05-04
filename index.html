@@ -39,6 +39,9 @@
                 <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
             </div>
             <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>
+            <button ng-click="level = 'beginner'">Beginner</button>
+            <button ng-click="level = 'intermediate'">Intermediate</button>
+            <button ng-click="level = 'expert'">Expert</button>
         </div>
 
         <h3>todo:</h3>
