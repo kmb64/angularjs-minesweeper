@@ -21,31 +21,38 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div data-ng-app="kbMinesweeper" data-ng-controller="appController" class="minesweeper">
+        <div class="app" data-ng-app="kbMinesweeper" data-ng-controller="appController">
+          <div class="minesweeper">
             <div class="scoreboard">
               <div class="panel timer">
-                  <div class="display"></div>
+                <div class="display"></div>
+                <p>{{time | date : 'mm:ss'}}</p>
               </div>
               <smiley-button ng-class="smileyFace"></smiley-button>
               <div class="panel mines-left">
 
-                  <div class="display">
+                <div class="display">
 
-                      <div class="10s-col"></div>
-                      <div class="1s-col"></div>
-                  </div>
+                  <div class="10s-col"></div>
+                  <div class="1s-col"></div>
+                </div>
                 <p>{{minesLeft}}</p>
               </div>
             </div>
 
             <div class="game-board" style="width : {{gameBoard.width}}px;">
-                <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
+              <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
             </div>
             <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>
+          </div>
+          <div class="buttons">
             <button ng-click="level = 'beginner'">Beginner</button>
             <button ng-click="level = 'intermediate'">Intermediate</button>
             <button ng-click="level = 'expert'">Expert</button>
+          </div>
+
         </div>
+
 
         <!--<div style="display: none;">-->
             <!--<iframe width="640" height="360" src="//www.youtube.com/embed/MSrTnWDTdwI?feature=player_detailpage&autoplay=1" frameborder="0" allowfullscreen></iframe>-->

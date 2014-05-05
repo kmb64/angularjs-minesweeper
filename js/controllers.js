@@ -1,8 +1,18 @@
 /*global mineCount, rows, cols, cellCount*/
 
 app.controller('appController', function ($scope, gameBoardService) {
-
+  var interval;
   $scope.setUp = function () {
+
+    if(typeof interval !== 'undefined') {
+      window.clearInterval(interval);
+    }
+
+    $scope.time = 0;
+    interval = window.setInterval(function(){
+      $scope.time += 1000;
+      $scope.$apply();
+    },1000);
 
     $scope.minesLeft = mineCount;
     $scope.gameBoard = {};
