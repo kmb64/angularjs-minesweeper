@@ -4,6 +4,7 @@ app.controller('appController', function ($scope, gameBoardService) {
 
   $scope.setUp = function () {
 
+    $scope.minesLeft = mineCount;
     $scope.gameBoard = {};
     $scope.scoreBoard = {};
     $scope.smileyFace = 'alive';
@@ -29,6 +30,7 @@ app.controller('appController', function ($scope, gameBoardService) {
             flagged +=1;
           }
         });
+        $scope.minesLeft = mineCount - flagged;
         if (!gameOver && cleared === cellCount && flagged === mineCount) {
           $scope.scoreBoard.gameStatus = 'You win!';
           $scope.setSmileyFace('won');

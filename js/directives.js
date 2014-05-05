@@ -1,45 +1,45 @@
-app.directive('cell', ['gameBoardService', function(gameBoardService){
+app.directive('cell', ['gameBoardService', function (gameBoardService) {
 
-    var link = function(scope, element, attrs) {
+    var link = function (scope, element, attrs) {
 
       var rightMouseDown = false,
         leftMouseDown = false;
 
-        element.bind('click', function(){
-            if(scope.cell.type === CLEAR) {
-                gameBoardService.clearSurroundingCells(scope.cell.index);
-            }
-            if(scope.cell.state !== FLAGGED) {
-                scope.cell.state = scope.cell.type;
-            }
-            scope.$apply();
-        });
+      element.bind('click', function () {
+        if (scope.cell.type === CLEAR) {
+          gameBoardService.clearSurroundingCells(scope.cell.index);
+        }
+        if (scope.cell.state !== FLAGGED) {
+          scope.cell.state = scope.cell.type;
+        }
+        scope.$apply();
+      });
 
-        element.bind('contextmenu', function(e){
+      element.bind('contextmenu', function (e) {
 
-            if(scope.cell.state === FLAGGED) {
-                scope.cell.state = UNSURE;
-            }
-            else if(scope.cell.state === UNSURE) {
-                scope.cell.state = UNTOUCHED;
-            }
-            else if(scope.cell.state === UNTOUCHED) {
-                scope.cell.state = FLAGGED;
-            }
-            //Prevent default browser right click context menu.
-            e.preventDefault();
-            //Apply up to parent scope.
-            scope.$apply();
-        });
+        if (scope.cell.state === FLAGGED) {
+          scope.cell.state = UNSURE;
+        }
+        else if (scope.cell.state === UNSURE) {
+          scope.cell.state = UNTOUCHED;
+        }
+        else if (scope.cell.state === UNTOUCHED) {
+          scope.cell.state = FLAGGED;
+        }
+        //Prevent default browser right click context menu.
+        e.preventDefault();
+        //Apply up to parent scope.
+        scope.$apply();
+      });
 
-        element.bind('dblclick', function(){
-            if(scope.cell.state !== UNTOUCHED && scope.cell.state !== FLAGGED && scope.cell.state !== UNSURE) {
-                gameBoardService.clearIfFlagged(scope.cell.index);
-            }
-            scope.$apply();
-        });
+      element.bind('dblclick', function () {
+        if (scope.cell.state !== UNTOUCHED && scope.cell.state !== FLAGGED && scope.cell.state !== UNSURE) {
+          gameBoardService.clearIfFlagged(scope.cell.index);
+        }
+        scope.$apply();
+      });
 
-      element.bind('mousedown', function(event){
+      element.bind('mousedown', function (event) {
         switch (event.which) {
           //Left mouse button
           case 1:
@@ -55,12 +55,12 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
         }
       });
 
-      element.bind('mouseup', function(){
+      element.bind('mouseup', function () {
         scope.setSmileyFace('alive');
-        if(leftMouseDown && rightMouseDown) {
+        if (leftMouseDown && rightMouseDown) {
           leftMouseDown = false;
           rightMouseDown = false;
-          if(scope.cell.state !== UNTOUCHED && scope.cell.state !== FLAGGED && scope.cell.state !== UNSURE) {
+          if (scope.cell.state !== UNTOUCHED && scope.cell.state !== FLAGGED && scope.cell.state !== UNSURE) {
             gameBoardService.clearIfFlagged(scope.cell.index);
           }
           scope.$apply();
@@ -69,27 +69,27 @@ app.directive('cell', ['gameBoardService', function(gameBoardService){
     };
 
     return {
-        template : '<div class="cell"></div>',
-        restrict : 'E',
-        link : link,
-        replace : true,
-        scope : true
+      template: '<div class="cell"></div>',
+      restrict: 'E',
+      link: link,
+      replace: true,
+      scope: true
     };
-}])
-  .directive('smileyButton', ['gameBoardService', function(gameBoardService){
+  }])
+  .directive('smileyButton', ['gameBoardService', function (gameBoardService) {
 
-    var link = function(scope, element, attrs){
-      element.bind('click', function(){
-         scope.setUp();
-         scope.$apply();
+    var link = function (scope, element, attrs) {
+      element.bind('click', function () {
+        scope.setUp();
+        scope.$apply();
       });
     };
 
     return {
-      template : '<div class="panel smiley-button"></div>',
-      restrict : 'E',
-      link : link,
-      replace : true,
-      scope : false
+      template: '<div class="panel smiley-button"></div>',
+      restrict: 'E',
+      link: link,
+      replace: true,
+      scope: false
     };
   }]);
