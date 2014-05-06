@@ -1,5 +1,13 @@
+@font-face
+{
+    font-family: digital;
+    src: url('fonts/digital-7.ttf');
+}
+
 .buttons {
     margin: 20px;
+    display: inline;
+    position: absolute;
 }
 
 .minesweeper {
@@ -35,6 +43,8 @@
 
 .minesweeper .scoreboard .panel p {
     margin: 22px 0 0 0;
+    font-family: 'digital', sans-serif;
+    /*font-size: 14px;*/
 }
 
 .minesweeper .scoreboard .panel.timer {
