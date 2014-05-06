@@ -66,11 +66,11 @@
 }
 
 .minesweeper .scoreboard .panel.smiley-button.alive {
-    background : #fff url('icons/alive-big.png') center no-repeat;
+    background : #fff url('icons/alive-big2.png') center no-repeat;
 }
 
 .minesweeper .scoreboard .panel.smiley-button.flinch {
-    background : #fff url('icons/flinch-big.png') center no-repeat;
+    background : #fff url('icons/flinch-big2.png') center no-repeat;
 }
 
 .minesweeper .scoreboard .panel.smiley-button.dead {
