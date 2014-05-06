@@ -12,6 +12,7 @@ app.directive('cell', ['gameBoardService', function (gameBoardService) {
         if (scope.cell.state !== FLAGGED) {
           scope.cell.state = scope.cell.type;
         }
+        scope.setTimer();
         scope.$apply();
       });
 

@@ -1,19 +1,23 @@
 /*global mineCount, rows, cols, cellCount*/
 
 app.controller('appController', function ($scope, gameBoardService) {
-  var interval;
+  var interval = 0;
+
+  $scope.setTimer = function(){
+    if(typeof interval === 'undefined') {
+      $scope.time = 0;
+      interval = window.setInterval(function(){
+        $scope.time += 1000;
+        $scope.$apply();
+      },1000);
+    }
+  };
+
   $scope.setUp = function () {
 
-    if(typeof interval !== 'undefined') {
-      window.clearInterval(interval);
-    }
-
+    clearInterval(interval);
+    interval = undefined;
     $scope.time = 0;
-    interval = window.setInterval(function(){
-      $scope.time += 1000;
-      $scope.$apply();
-    },1000);
-
     $scope.minesLeft = mineCount;
     $scope.gameBoard = {};
     $scope.scoreBoard = {};
@@ -44,6 +48,7 @@ app.controller('appController', function ($scope, gameBoardService) {
         if (!gameOver && cleared === cellCount && flagged === mineCount) {
           $scope.scoreBoard.gameStatus = 'You win!';
           $scope.setSmileyFace('won');
+          clearInterval(interval);
         }
       },
       true);

@@ -116,7 +116,7 @@ app.service('gameBoardService', function(){
 
     var minesBesideMe = function(index) {
         var count = 0;
-        angular.forEach(getSurroundingCells(index, cells), function(cell){
+        angular.forEach(getSurroundingCells(index), function(cell){
             if(theresAMine(cell)) {
                 count += 1;
             }
