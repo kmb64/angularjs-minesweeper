@@ -1,6 +1,14 @@
 /*global mineCount, rows, cols, cellCount*/
 
-app.controller('appController', function ($scope, gameBoardService) {
+app.controller('appController', function ($scope, $cookies, gameBoardService) {
+
+  $cookies.beginner = '2500';
+  $scope.highScores = {
+    beginner : '-' || $cookies.beginner,
+    intermediate : '-' || $cookies.intermediate,
+    expert : '-' || $cookies.expert
+  };
+
   var interval = 0;
 
   $scope.setTimer = function(){
@@ -49,6 +57,8 @@ app.controller('appController', function ($scope, gameBoardService) {
           $scope.scoreBoard.gameStatus = 'You win!';
           $scope.setSmileyFace('won');
           clearInterval(interval);
+          $cookieStore.put('beginner', $scope.time);
+          console.log($scope.time);
         }
       },
       true);
@@ -63,7 +73,7 @@ app.controller('appController', function ($scope, gameBoardService) {
     };
   };
 
-  $scope.level = 'beginner';
+  $scope.level = 'intermediate';
 
   $scope.$watch('level', function(level){
 

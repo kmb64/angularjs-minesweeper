@@ -22,6 +22,7 @@
         <![endif]-->
 
         <div class="app" data-ng-app="kbMinesweeper" data-ng-controller="appController">
+          <h1>Angular JS Minesweeper</h1>
           <div class="minesweeper">
             <div class="scoreboard">
               <div class="panel timer">
@@ -45,14 +46,35 @@
             </div>
             <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>
           </div>
+
           <div class="buttons">
-            <button ng-click="level = 'beginner'">Beginner</button>
-            <button ng-click="level = 'intermediate'">Intermediate</button>
-            <button ng-click="level = 'expert'">Expert</button>
+            <h2>High scores</h2>
+            <form>
+              <ul>
+                <li>
+                  <label for="beginner">
+                    <input name="level" id="beginner" type="radio" value="beginner" ng-model="level">
+                    Beginner :
+                  </label>
+                  <span>{{highScores.beginner | date : 'mm:ss'}}</span>
+                </li>
+                <li><label for="intermediate">
+                  <input name="level" id="intermediate" type="radio" value="intermediate" ng-model="level">
+                  Intermediate :
+                </label>
+                <span>{{highScores.intermediate | date : 'mm:ss'}}</span>
+                </li>
+                <li>
+                  <label for="expert">
+                    <input name="level" id="expert" type="radio" value="expert" ng-model="level">
+                    Expert :
+                  </label>
+                  <span>{{highScores.expert | date : 'mm:ss'}}</span>
+                </li>
+              </ul>
+            </form>
           </div>
-
         </div>
-
 
         <!--<div style="display: none;">-->
             <!--<iframe width="640" height="360" src="//www.youtube.com/embed/MSrTnWDTdwI?feature=player_detailpage&autoplay=1" frameborder="0" allowfullscreen></iframe>-->

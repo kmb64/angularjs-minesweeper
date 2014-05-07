@@ -4,10 +4,24 @@
     src: url('fonts/digital-7.ttf');
 }
 
+.app h1 {
+    margin: 20px 0 0 20px;
+}
+
 .buttons {
     margin: 20px;
     display: inline;
     position: absolute;
+}
+
+.buttons h2 {
+    margin: 0 0 20px 0;
+    font-family: 'digital', sans-serif;
+}
+
+.buttons ul {
+    list-style-type: none;
+    padding: 0;
 }
 
 .minesweeper {
