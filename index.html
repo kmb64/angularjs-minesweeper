@@ -41,7 +41,7 @@
               </div>
             </div>
 
-            <div class="game-board" style="width : {{gameBoard.width}}px;">
+            <div class="game-board" ng-style="gameBoard.width">
               <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
             </div>
             <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>

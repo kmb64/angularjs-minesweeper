@@ -2,11 +2,10 @@
 
 app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
-  $cookies.beginner = '2500';
   $scope.highScores = {
-    beginner : '-' || $cookies.beginner,
-    intermediate : '-' || $cookies.intermediate,
-    expert : '-' || $cookies.expert
+      beginner : $cookies.beginner || '-',
+    intermediate : $cookies.intermediate || '-',
+    expert : $cookies.expert || '-'
   };
 
   var interval = 0;
@@ -32,7 +31,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     $scope.smileyFace = 'alive';
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
-    $scope.gameBoard.width = cols * 20 + cols;
+    $scope.gameBoard.width = {'width' : cols * 20 + cols + 'px'};
 
     var unregisterCellWatch = $scope.$watch('gameBoard.cells', function (newCells) {
         var gameOver = false,
@@ -57,8 +56,15 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
           $scope.scoreBoard.gameStatus = 'You win!';
           $scope.setSmileyFace('won');
           clearInterval(interval);
-          $cookieStore.put('beginner', $scope.time);
-          console.log($scope.time);
+          if($scope.level === 'intermediate'){
+            $cookie.intermediate = $scope.time;
+          }
+          else if($scope.level === 'expert') {
+            $cookies.expert = $scope.time;
+          }
+          else {
+            $cookies.beginner = $scope.time;
+          }
         }
       },
       true);
