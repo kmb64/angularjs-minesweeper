@@ -18,6 +18,12 @@ var ONE = 'one',
   mineCount,
   rows,
   cols,
-  cellCount;
+  cellCount,
 
-var TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT];
+  TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT],
+
+  Levels = {
+    BEGINNER : 'beginner',
+    INTERMEDIDATE : 'intermediate',
+    EXPERT : 'expert'
+  };

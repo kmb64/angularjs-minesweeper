@@ -2,13 +2,13 @@
 
 app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
+  var interval = 0;
+
   $scope.highScores = {
-      beginner : $cookies.beginner || '-',
+    beginner : $cookies.beginner || '-',
     intermediate : $cookies.intermediate || '-',
     expert : $cookies.expert || '-'
   };
-
-  var interval = 0;
 
   $scope.setTimer = function(){
     if(typeof interval === 'undefined') {
@@ -17,6 +17,31 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
         $scope.time += 1000;
         $scope.$apply();
       },1000);
+    }
+  };
+
+  var handleWin = function(){
+    $scope.scoreBoard.gameStatus = 'You win!';
+    $scope.setSmileyFace('won');
+    clearInterval(interval);
+
+    switch($scope.level) {
+      case Levels.BEGINNER:
+        if($scope.time < $cookies.beginner) {
+          $cookies.beginner = $scope.time;
+        }
+        break;
+      case Levels.INTERMEDIDATE:
+        if($scope.time < $cookies.intermediate) {
+          $cookies.intermediate = $scope.time;
+        }
+        break;
+      case Levels.EXPERT:
+        if($scope.time < $cookies.expert) {
+          $cookies.expert = $scope.time;
+        }
+        break;
+      default:
     }
   };
 
@@ -53,18 +78,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
         });
         $scope.minesLeft = mineCount - flagged;
         if (!gameOver && cleared === cellCount && flagged === mineCount) {
-          $scope.scoreBoard.gameStatus = 'You win!';
-          $scope.setSmileyFace('won');
-          clearInterval(interval);
-          if($scope.level === 'intermediate'){
-            $cookies.intermediate = $scope.time;
-          }
-          else if($scope.level === 'expert') {
-            $cookies.expert = $scope.time;
-          }
-          else {
-            $cookies.beginner = $scope.time;
-          }
+          handleWin();
         }
       },
       true);
@@ -79,26 +93,30 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     };
   };
 
-  $scope.level = 'intermediate';
+  $scope.level = $cookies.level || Levels.BEGINNER;
 
   $scope.$watch('level', function(level){
 
-    if(level === 'intermediate') {
-      mineCount = 40;
-      rows = 16;
-      cols = 16;
-    }
-    else if(level === 'expert') {
-      mineCount = 99;
-      rows = 16;
-      cols = 30;
-    }
-    else {
-      mineCount = 10;
-      rows = 9;
-      cols = 9;
-    }
+    $cookies.level = level;
 
+    switch(level) {
+      case Levels.BEGINNER:
+        mineCount = 10;
+        rows = 9;
+        cols = 9;
+        break;
+      case Levels.INTERMEDIDATE:
+        mineCount = 40;
+        rows = 16;
+        cols = 16;
+        break;
+      case Levels.EXPERT:
+        mineCount = 99;
+        rows = 16;
+        cols = 30;
+        break;
+      default:
+    }
     cellCount = cols * rows;
 
     $scope.setUp();
