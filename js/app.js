@@ -15,15 +15,31 @@ var ONE = 'one',
   MINE = 'mine',
   DEATH_MINE_CLASS = 'death',
 
-  mineCount,
-  rows,
-  cols,
-  cellCount,
+//  mineCount,
+//  rows,
+//  cols,
+//  cellCount,
 
   TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT],
 
   Levels = {
     BEGINNER : 'beginner',
-    INTERMEDIDATE : 'intermediate',
+    INTERMEDIATE : 'intermediate',
     EXPERT : 'expert'
   };
+
+  app.GameBoard = {
+
+    mineCount : 0,
+    rows : 0,
+    cols : 0,
+    cellCount : 0,
+
+    setUp: function(mineCount, rows, cols){
+      this.mineCount = mineCount;
+      this.rows = rows;
+      this.cols = cols;
+      this.cellCount = cols * rows;
+    }
+  };
+

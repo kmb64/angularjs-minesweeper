@@ -1,5 +1,3 @@
-/*global mineCount, rows, cols, cellCount*/
-
 app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
   var interval = 0;
@@ -31,7 +29,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
           $cookies.beginner = $scope.time;
         }
         break;
-      case Levels.INTERMEDIDATE:
+      case Levels.INTERMEDIATE:
         if($scope.time < $cookies.intermediate) {
           $cookies.intermediate = $scope.time;
         }
@@ -50,13 +48,13 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     clearInterval(interval);
     interval = undefined;
     $scope.time = 0;
-    $scope.minesLeft = mineCount;
+    $scope.minesLeft = app.GameBoard.mineCount;
     $scope.gameBoard = {};
     $scope.scoreBoard = {};
     $scope.smileyFace = 'alive';
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
-    $scope.gameBoard.width = {'width' : cols * 20 + cols + 'px'};
+    $scope.gameBoard.width = {'width' : app.GameBoard.cols * 20 + app.GameBoard.cols + 'px'};
 
     var unregisterCellWatch = $scope.$watch('gameBoard.cells', function (newCells) {
         var gameOver = false,
@@ -76,8 +74,8 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
             flagged +=1;
           }
         });
-        $scope.minesLeft = mineCount - flagged;
-        if (!gameOver && cleared === cellCount && flagged === mineCount) {
+        $scope.minesLeft = app.GameBoard.mineCount - flagged;
+        if (!gameOver && cleared === app.GameBoard.cellCount && flagged === app.GameBoard.mineCount) {
           handleWin();
         }
       },
@@ -101,24 +99,16 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
     switch(level) {
       case Levels.BEGINNER:
-        mineCount = 10;
-        rows = 9;
-        cols = 9;
+        app.GameBoard.setUp(10, 9, 9);
         break;
-      case Levels.INTERMEDIDATE:
-        mineCount = 40;
-        rows = 16;
-        cols = 16;
+      case Levels.INTERMEDIATE:
+        app.GameBoard.setUp(40, 16, 16);
         break;
       case Levels.EXPERT:
-        mineCount = 99;
-        rows = 16;
-        cols = 30;
+        app.GameBoard.setUp(99, 16, 30);
         break;
       default:
     }
-    cellCount = cols * rows;
-
     $scope.setUp();
   });
 

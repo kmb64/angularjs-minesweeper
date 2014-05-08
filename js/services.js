@@ -5,7 +5,7 @@ app.service('gameBoardService', function(){
     var populateCells = function(){
         //Make sure cells are cleared.
         cells = [];
-        for(var i = 0; i < cellCount; i+=1) {
+        for(var i = 0; i < app.GameBoard.cellCount; i+=1) {
             cells.push(
                 {
                     type : '',
@@ -41,7 +41,7 @@ app.service('gameBoardService', function(){
         var max = cells.length -1;
         var min = 1;
         var usedIndexes = [];
-        for(var i = 0; i < mineCount; i+=1) {
+        for(var i = 0; i < app.GameBoard.mineCount; i+=1) {
             var index = getUniqueRandomIndex(min, max, usedIndexes);
             cells[index].type = MINE;
             usedIndexes.push(index);
@@ -80,35 +80,35 @@ app.service('gameBoardService', function(){
 
     var getSurroundingCells = function(index){
         var surroundingCells = [];
-        if(index > cols -1) {
+        if(index > app.GameBoard.cols -1) {
             //Check above, left
-            if(index % cols !== 0) {
-                surroundingCells.push(cells[index - (cols + 1)]);
+            if(index % app.GameBoard.cols !== 0) {
+                surroundingCells.push(cells[index - (app.GameBoard.cols + 1)]);
             }
             //Check above, right
-            if(index % cols !== (cols -1)) {
-                surroundingCells.push(cells[index - (cols - 1)]);
+            if(index % app.GameBoard.cols !== (app.GameBoard.cols -1)) {
+                surroundingCells.push(cells[index - (app.GameBoard.cols - 1)]);
             }
-            surroundingCells.push(cells[index - cols])
+            surroundingCells.push(cells[index - app.GameBoard.cols])
         }
         //Check right
-        if(index % cols !== (cols -1)) {
+        if(index % app.GameBoard.cols !== (app.GameBoard.cols -1)) {
             surroundingCells.push(cells[index + 1]);
         }
         //Check below
-        if(index < (cellCount - cols)) {
+        if(index < (app.GameBoard.cellCount - app.GameBoard.cols)) {
             //Check below, left
-            if(index % cols !== 0) {
-                surroundingCells.push(cells[index + (cols -1)]);
+            if(index % app.GameBoard.cols !== 0) {
+                surroundingCells.push(cells[index + (app.GameBoard.cols -1)]);
             }
             //Check below, right
-            if(index % cols !== (cols -1)) {
-                surroundingCells.push(cells[index + (cols + 1)]);
+            if(index % app.GameBoard.cols !== (app.GameBoard.cols -1)) {
+                surroundingCells.push(cells[index + (app.GameBoard.cols + 1)]);
             }
-            surroundingCells.push(cells[index + cols]);
+            surroundingCells.push(cells[index + app.GameBoard.cols]);
         }
         //Check left
-        if(index % cols !== 0) {
+        if(index % app.GameBoard.cols !== 0) {
             surroundingCells.push(cells[index - 1]);
         }
         return surroundingCells;
