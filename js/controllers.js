@@ -57,7 +57,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
           $scope.setSmileyFace('won');
           clearInterval(interval);
           if($scope.level === 'intermediate'){
-            $cookie.intermediate = $scope.time;
+            $cookies.intermediate = $scope.time;
           }
           else if($scope.level === 'expert') {
             $cookies.expert = $scope.time;
