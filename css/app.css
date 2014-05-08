@@ -5,7 +5,24 @@
 }
 
 .app h1 {
-    margin: 20px 0 0 20px;
+    font-family: 'digital', sans-serif;
+    margin: 0 0 0 100px;
+}
+
+.app .title {
+    position: relative;
+    margin: 20px 0 0 30px;
+}
+
+.app .title img{
+    position: absolute;
+    top : 5px;
+    display: inline;
+}
+
+.app .title h1 {
+    display: inline;
+    background-color: #fff;
 }
 
 .buttons {
