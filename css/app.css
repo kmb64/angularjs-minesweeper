@@ -26,9 +26,15 @@
 }
 
 .buttons {
-    margin: 20px;
+    margin: 20px 20px 20px 10px;
     display: inline;
     position: absolute;
+    background: url('background/high-score-bg.png') no-repeat;
+    width: 180px;
+    height: 280px;
+    padding: 20px;
+    color: #fff;
+    border-radius: 6px;
 }
 
 .buttons h2 {

@@ -29,7 +29,8 @@ var ONE = 'one',
     FLINCH : 'flinch',
     OVER_CONFIDENT : 'almost-won',
     DEAD : 'dead',
-    VICTORIOUS : 'won'
+    VICTORIOUS : 'won',
+    DEFAULT : 'alive'
   };
 
 

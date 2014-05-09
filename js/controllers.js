@@ -9,10 +9,10 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
   };
 
   var blink = function(time){
-    if(time % 3000 === 0 && !$scope.smileyFaceLock) {
+    if(time % 3000 === 0) {
       $scope.setSmileyFace(SmileyFaces.BLINKING);
-    } else if (!$scope.smileyFaceLock){
-      $scope.setSmileyFace(SmileyFaces.ALIVE);
+    } else{
+      $scope.setSmileyFace(SmileyFaces.DEFAULT);
     }
   };
 
@@ -30,6 +30,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
   var handleWin = function(){
     $scope.scoreBoard.gameStatus = 'You win!';
     $scope.setSmileyFace(SmileyFaces.VICTORIOUS);
+    $scope.gameComplete = true;
     clearInterval(interval);
 
     switch($scope.level) {
@@ -65,6 +66,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
     $scope.gameBoard.width = {'width' : app.GameBoard.cols * 20 + app.GameBoard.cols + 'px'};
+    $scope.gameComplete = false;
 
     var unregisterCellWatch = $scope.$watch('gameBoard.cells', function (newCells) {
         var gameOver = false,
@@ -85,8 +87,8 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
           }
         });
         $scope.minesLeft = app.GameBoard.mineCount - flagged;
-        if($scope.minesLeft < 4) {
-          $scope.setSmileyFace(SmileyFaces.OVER_CONFIDENT);
+        if($scope.minesLeft < 5) {
+          $scope.setSmileyFace(SmileyFaces.DEFAULT = SmileyFaces.OVER_CONFIDENT);
         }
         if (!gameOver && cleared === app.GameBoard.cellCount && flagged === app.GameBoard.mineCount) {
           handleWin();
@@ -101,6 +103,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
       });
       $scope.scoreBoard.gameStatus = 'Game over';
       $scope.setSmileyFace(SmileyFaces.DEAD);
+      $scope.gameComplete = true;
       clearInterval(interval);
     };
   };
@@ -127,7 +130,9 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
   });
 
   $scope.setSmileyFace = function (smileyFace) {
-    $scope.smileyFace = smileyFace;
+    if(!$scope.smileyFaceLock && !$scope.gameComplete) {
+      $scope.smileyFace = smileyFace;
+    }
   };
 
   $scope.lockSmileyFace = function(){

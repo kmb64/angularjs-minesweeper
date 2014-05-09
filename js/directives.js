@@ -58,8 +58,8 @@ app.directive('cell', ['gameBoardService', function (gameBoardService) {
       });
 
       element.bind('mouseup', function () {
-        scope.setSmileyFace(SmileyFaces.ALIVE);
         scope.unlockSmileyFace();
+        scope.setSmileyFace(SmileyFaces.ALIVE);
         if (leftMouseDown && rightMouseDown) {
           leftMouseDown = false;
           rightMouseDown = false;
