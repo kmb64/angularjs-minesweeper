@@ -15,18 +15,24 @@ var ONE = 'one',
   MINE = 'mine',
   DEATH_MINE_CLASS = 'death',
 
-//  mineCount,
-//  rows,
-//  cols,
-//  cellCount,
-
   TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT],
 
   Levels = {
     BEGINNER : 'beginner',
     INTERMEDIATE : 'intermediate',
     EXPERT : 'expert'
+  },
+
+  SmileyFaces = {
+    ALIVE : 'alive',
+    BLINKING : 'blink',
+    FLINCH : 'flinch',
+    OVER_CONFIDENT : 'almost-won',
+    DEAD : 'dead',
+    VICTORIOUS : 'won'
   };
+
+
 
   app.GameBoard = {
 

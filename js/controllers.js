@@ -9,10 +9,10 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
   };
 
   var blink = function(time){
-    if(time % 3000 === 0) {
-      $scope.setSmileyFace('blink');
-    } else {
-      $scope.setSmileyFace('alive');
+    if(time % 3000 === 0 && !$scope.smileyFaceLock) {
+      $scope.setSmileyFace(SmileyFaces.BLINKING);
+    } else if (!$scope.smileyFaceLock){
+      $scope.setSmileyFace(SmileyFaces.ALIVE);
     }
   };
 
@@ -29,7 +29,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
   var handleWin = function(){
     $scope.scoreBoard.gameStatus = 'You win!';
-    $scope.setSmileyFace('won');
+    $scope.setSmileyFace(SmileyFaces.VICTORIOUS);
     clearInterval(interval);
 
     switch($scope.level) {
@@ -60,7 +60,8 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     $scope.minesLeft = app.GameBoard.mineCount;
     $scope.gameBoard = {};
     $scope.scoreBoard = {};
-    $scope.smileyFace = 'alive';
+    $scope.smileyFace = SmileyFaces.ALIVE;
+    $scope.smileyFaceLock = false;
     $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
     $scope.gameBoard.width = {'width' : app.GameBoard.cols * 20 + app.GameBoard.cols + 'px'};
@@ -85,7 +86,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
         });
         $scope.minesLeft = app.GameBoard.mineCount - flagged;
         if($scope.minesLeft < 4) {
-          $scope.setSmileyFace('almost-won');
+          $scope.setSmileyFace(SmileyFaces.OVER_CONFIDENT);
         }
         if (!gameOver && cleared === app.GameBoard.cellCount && flagged === app.GameBoard.mineCount) {
           handleWin();
@@ -99,7 +100,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
         cell.state = cell.type;
       });
       $scope.scoreBoard.gameStatus = 'Game over';
-      $scope.setSmileyFace('dead');
+      $scope.setSmileyFace(SmileyFaces.DEAD);
       clearInterval(interval);
     };
   };
@@ -128,4 +129,13 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
   $scope.setSmileyFace = function (smileyFace) {
     $scope.smileyFace = smileyFace;
   };
+
+  $scope.lockSmileyFace = function(){
+    $scope.smileyFaceLock = true;
+  };
+
+  $scope.unlockSmileyFace = function(){
+    $scope.smileyFaceLock = false;
+  }
+
 });

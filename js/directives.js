@@ -45,7 +45,8 @@ app.directive('cell', ['gameBoardService', function (gameBoardService) {
           //Left mouse button
           case 1:
             leftMouseDown = true;
-            scope.setSmileyFace('flinch');
+            scope.setSmileyFace(SmileyFaces.FLINCH);
+            scope.lockSmileyFace();
             scope.$apply();
             break;
           //Right mouse button
@@ -57,7 +58,8 @@ app.directive('cell', ['gameBoardService', function (gameBoardService) {
       });
 
       element.bind('mouseup', function () {
-        scope.setSmileyFace('alive');
+        scope.setSmileyFace(SmileyFaces.ALIVE);
+        scope.unlockSmileyFace();
         if (leftMouseDown && rightMouseDown) {
           leftMouseDown = false;
           rightMouseDown = false;
