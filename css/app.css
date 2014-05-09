@@ -7,6 +7,8 @@
 .app h1 {
     font-family: 'digital', sans-serif;
     margin: 0 0 0 108px;
+    color: #fa0f4a;
+    text-shadow: 2px 2px 3px rgba(250, 17, 54, 0.71);
 }
 
 .app .title {
@@ -40,6 +42,8 @@
 .buttons h2 {
     margin: 0 0 20px 0;
     font-family: 'digital', sans-serif;
+    color: #fa0f4a;
+    text-shadow: 2px 2px 3px rgba(250, 17, 54, 0.71);
 }
 
 .buttons ul {
