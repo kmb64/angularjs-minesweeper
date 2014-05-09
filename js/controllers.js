@@ -8,11 +8,20 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     expert : $cookies.expert || '-'
   };
 
+  var blink = function(time){
+    if(time % 3000 === 0) {
+      $scope.setSmileyFace('blink');
+    } else {
+      $scope.setSmileyFace('alive');
+    }
+  };
+
   $scope.setTimer = function(){
     if(typeof interval === 'undefined') {
       $scope.time = 0;
       interval = window.setInterval(function(){
         $scope.time += 1000;
+        blink($scope.time);
         $scope.$apply();
       },1000);
     }
@@ -75,6 +84,9 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
           }
         });
         $scope.minesLeft = app.GameBoard.mineCount - flagged;
+        if($scope.minesLeft < 4) {
+          $scope.setSmileyFace('almost-won');
+        }
         if (!gameOver && cleared === app.GameBoard.cellCount && flagged === app.GameBoard.mineCount) {
           handleWin();
         }

@@ -111,7 +111,7 @@
 }
 
 .minesweeper .scoreboard .panel.smiley-button.flinch {
-    background : #fff url('icons/flinch-big2.png') center no-repeat;
+    background : #fff url('icons/flinch-big.png') center no-repeat;
 }
 
 .minesweeper .scoreboard .panel.smiley-button.dead {
@@ -120,6 +120,14 @@
 
 .minesweeper .scoreboard .panel.smiley-button.won {
     background : #fff url('icons/won-big.png') center no-repeat;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.blink {
+    background : #fff url('icons/blink-big.png') center no-repeat;
+}
+
+.minesweeper .scoreboard .panel.smiley-button.almost-won {
+    background : #fff url('icons/flinch-big2.png') center no-repeat;
 }
 
 
