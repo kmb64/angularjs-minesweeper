@@ -100,6 +100,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
       });
       $scope.scoreBoard.gameStatus = 'Game over';
       $scope.setSmileyFace('dead');
+      clearInterval(interval);
     };
   };
 

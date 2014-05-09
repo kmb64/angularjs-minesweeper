@@ -6,12 +6,12 @@
 
 .app h1 {
     font-family: 'digital', sans-serif;
-    margin: 0 0 0 100px;
+    margin: 0 0 0 108px;
 }
 
 .app .title {
     position: relative;
-    margin: 20px 0 0 30px;
+    margin: 20px 0 0 20px;
 }
 
 .app .title img{
@@ -129,9 +129,6 @@
 .minesweeper .scoreboard .panel.smiley-button.almost-won {
     background : #fff url('icons/flinch-big2.png') center no-repeat;
 }
-
-
-
 
 .minesweeper .scoreboard .panel.mines-left {
     float : right;
