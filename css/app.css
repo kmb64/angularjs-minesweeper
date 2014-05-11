@@ -183,6 +183,7 @@
     margin : 1px 1px 0 0;
     /*background : #808080;*/
     text-align : center;
+    cursor: default;
 
     -moz-box-shadow:inset 0px 1px 3px 0px #464c78;
     -webkit-box-shadow:inset 0px 1px 3px 0px #464c78;
