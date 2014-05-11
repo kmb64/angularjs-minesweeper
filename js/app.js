@@ -30,7 +30,7 @@ var ONE = 'one',
     OVER_CONFIDENT : 'almost-won',
     DEAD : 'dead',
     VICTORIOUS : 'won',
-    DEFAULT : 'alive'
+    normal : 'alive'
   };
 
 
