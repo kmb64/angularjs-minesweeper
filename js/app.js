@@ -1,4 +1,4 @@
-var app = angular.module('kbMinesweeper', ['ngCookies']);
+var app = angular.module('kbMinesweeper', []);
 
 var ONE = 'one',
   TWO = 'two',
@@ -16,6 +16,8 @@ var ONE = 'one',
   DEATH_MINE_CLASS = 'death',
 
   TYPES = [CLEAR, ONE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT],
+
+  NO_SCORE = '-',
 
   Levels = {
     BEGINNER : 'beginner',

@@ -1,11 +1,10 @@
-app.controller('appController', function ($scope, $cookies, gameBoardService) {
+app.controller('appController', function ($scope, gameBoardService, localStorageService) {
 
   var interval = 0;
-
   $scope.highScores = {
-    beginner : $cookies.beginner || '-',
-    intermediate : $cookies.intermediate || '-',
-    expert : $cookies.expert || '-'
+    beginner : localStorageService.getHighScore(Levels.BEGINNER) || NO_SCORE,
+    intermediate : localStorageService.getHighScore(Levels.INTERMEDIATE) || NO_SCORE,
+    expert : localStorageService.getHighScore(Levels.EXPERT) || NO_SCORE
   };
 
   var blink = function(time){
@@ -33,23 +32,10 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     $scope.gameComplete = true;
     clearInterval(interval);
 
-    switch($scope.level) {
-      case Levels.BEGINNER:
-        if($scope.time < $cookies.beginner || !$cookies.beginner.length)  {
-          $cookies.beginner = $scope.time;
-        }
-        break;
-      case Levels.INTERMEDIATE:
-        if($scope.time < $cookies.intermediate) {
-          $cookies.intermediate = $scope.time;
-        }
-        break;
-      case Levels.EXPERT:
-        if($scope.time < $cookies.expert) {
-          $cookies.expert = $scope.time;
-        }
-        break;
-      default:
+    if(!localStorageService.getHighScore($scope.level) ||
+      $scope.time < localStorageService.getHighScore($scope.level)) {
+      localStorageService.setHighScore($scope.level, $scope.time);
+      $scope.highScores[$scope.level] = $scope.time;
     }
   };
 
@@ -109,11 +95,11 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
     };
   };
 
-  $scope.level = $cookies.level || Levels.BEGINNER;
+  $scope.level = localStorageService.getItem('level') || Levels.BEGINNER;
 
   $scope.$watch('level', function(level){
 
-    $cookies.level = level;
+    localStorageService.setItem('level', level);
 
     switch(level) {
       case Levels.BEGINNER:

@@ -149,4 +149,33 @@ app.service('gameBoardService', function(){
         clearSurroundingCells : clearSurroundingCells,
         clearIfFlagged : clearIfFlagged
     };
+
+}).service('localStorageService', function(){
+
+  var setItem = function(key, value){
+    if(typeof(Storage)!=="undefined") {
+      localStorage.setItem(key, value);
+    }
+  };
+
+  var getItem = function(key){
+    if(typeof(localStorage)!=="undefined") {
+      return localStorage.getItem(key);
+    }
+  };
+
+  var getHighScore = function(level) {
+    return getItem(level);
+  };
+
+  var setHighScore = function(level, score) {
+    setItem(level, score);
+  };
+
+  return {
+    getHighScore : getHighScore,
+    setHighScore : setHighScore,
+    getItem : getItem,
+    setItem : setItem
+  };
 });
