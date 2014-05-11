@@ -35,7 +35,7 @@ app.controller('appController', function ($scope, $cookies, gameBoardService) {
 
     switch($scope.level) {
       case Levels.BEGINNER:
-        if($scope.time < $cookies.beginner) {
+        if($scope.time < $cookies.beginner || !$cookies.beginner.length)  {
           $cookies.beginner = $scope.time;
         }
         break;

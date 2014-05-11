@@ -6,9 +6,10 @@
 
 .app h1 {
     font-family: 'digital', sans-serif;
-    margin: 0 0 0 108px;
+    margin: 0;
     color: #fa0f4a;
     text-shadow: 2px 2px 3px rgba(250, 17, 54, 0.71);
+    font-size: 4em;
 }
 
 .app .title {
@@ -17,9 +18,10 @@
 }
 
 .app .title img{
-    position: absolute;
+    display: block;
+    /*position: absolute;*/
     top : 5px;
-    display: inline;
+    /*display: inline;*/
 }
 
 .app .title h1 {
