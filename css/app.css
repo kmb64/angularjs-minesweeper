@@ -13,8 +13,12 @@
 }
 
 .app .title {
+    border-radius: 6px;
+    padding: 20px;
     position: relative;
     margin: 20px 0 0 20px;
+    background: url('background/title-bg.png') no-repeat;
+    width: 313px;
 }
 
 .app .title img{
@@ -26,7 +30,6 @@
 
 .app .title h1 {
     display: inline;
-    background-color: #fff;
 }
 
 .buttons {

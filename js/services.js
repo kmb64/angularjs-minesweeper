@@ -153,7 +153,7 @@ app.service('gameBoardService', function(){
 }).service('localStorageService', function(){
 
   var setItem = function(key, value){
-    if(typeof(Storage)!=="undefined") {
+    if(typeof(localStorage)!=="undefined") {
       localStorage.setItem(key, value);
     }
   };
