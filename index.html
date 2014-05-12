@@ -27,7 +27,7 @@
             <h1>Minesweeper</h1>
           </div>
           <div class="minesweeper">
-            <div class="scoreboard">
+            <div class="scoreboard" ng-class="level">
               <div class="panel timer">
                 <div class="display"></div>
                 <p>{{time | date : 'mm:ss'}}</p>

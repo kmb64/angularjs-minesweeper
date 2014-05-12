@@ -94,11 +94,18 @@
 .minesweeper .scoreboard .panel p {
     margin: 22px 0 0 0;
     font-family: 'digital', sans-serif;
-    /*font-size: 14px;*/
+    font-size: 20px;
 }
 
 .minesweeper .scoreboard .panel.timer {
     float : left;
+}
+
+.minesweeper .scoreboard.beginner .panel.timer .display {
+    background : url('icons/timer.png') center no-repeat;
+    width: 40px;
+    height: 16px;
+    display:block;
 }
 
 .minesweeper .scoreboard .panel.timer .display {
@@ -109,6 +116,23 @@
     display: inline-block;
     margin: 18px 0 0 12px;
     float: left;
+}
+
+.minesweeper .scoreboard.beginner .panel.mines-left .display {
+    background : url('icons/bomb.png') center no-repeat;
+    width: 40px;
+    height: 16px;
+    display:block;
+}
+
+.minesweeper .scoreboard .panel.mines-left .display {
+    width: 40px;
+    height: 32px;
+    background : url('icons/bomb-big.png') center no-repeat;
+    border-radius : 3px;
+    display: inline-block;
+    margin: 18px 12px 0 0;
+    float : right;
 }
 
 
@@ -155,16 +179,6 @@
 
 .minesweeper .scoreboard .panel.mines-left p {
 
-}
-
-.minesweeper .scoreboard .panel.mines-left .display {
-    width: 40px;
-    height: 32px;
-    background : url('icons/bomb-big.png') center no-repeat;
-    border-radius : 3px;
-    display: inline-block;
-    margin: 18px 12px 0 0;
-    float : right;
 }
 
 .minesweeper .scoreboard .game-status {
