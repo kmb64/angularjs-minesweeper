@@ -27,7 +27,6 @@ app.controller('appController', function ($scope, gameBoardService, localStorage
   };
 
   var handleWin = function(){
-    $scope.scoreBoard.gameStatus = 'You win!';
     $scope.setSmileyFace(SmileyFaces.VICTORIOUS);
     $scope.gameComplete = true;
     clearInterval(interval);
@@ -50,7 +49,6 @@ app.controller('appController', function ($scope, gameBoardService, localStorage
     SmileyFaces.normal = SmileyFaces.ALIVE;
     $scope.smileyFace = SmileyFaces.ALIVE;
     $scope.smileyFaceLock = false;
-    $scope.scoreBoard.gameStatus = '';
     $scope.gameBoard.cells = gameBoardService.setup().cells;
     $scope.gameBoard.width = {'width' : app.GameBoard.cols * 20 + app.GameBoard.cols + 'px'};
     $scope.gameComplete = false;
@@ -88,7 +86,6 @@ app.controller('appController', function ($scope, gameBoardService, localStorage
       angular.forEach($scope.gameBoard.cells, function (cell) {
         cell.state = cell.type;
       });
-      $scope.scoreBoard.gameStatus = 'Game over';
       $scope.setSmileyFace(SmileyFaces.DEAD);
       $scope.gameComplete = true;
       clearInterval(interval);

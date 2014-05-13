@@ -23,9 +23,7 @@
 
 .app .title img{
     display: block;
-    /*position: absolute;*/
     top : 5px;
-    /*display: inline;*/
 }
 
 .app .title h1 {
@@ -66,23 +64,16 @@
     box-shadow: 0 6px 6px 6px rgba(128,115,112,0.75);
     border: 8px solid #4e5266;
     border-radius: 6px;
-    /*border : 1px solid #000;*/
-    /*width: 188px;*/
 }
 
 .minesweeper .scoreboard {
-    /*background: #000;*/
     height: 76px;
     text-align: center;
-    /*border : #000 1px solid;*/
-    /*border-top-left-radius: 3px;*/
-    /*border-top-right-radius: 3px;*/
     border-bottom: 8px solid #4e5266;
 }
 
 .minesweeper .scoreboard .panel {
     margin : 6px 0 0 0;
-    /*min-width : 40px;*/
     width : 30%;
     height: 64px;
     background : #fff;
@@ -138,7 +129,6 @@
 
 .minesweeper .scoreboard .panel.smiley-button {
     text-align: center;
-    /*background: gray;*/
     min-width: 64px;
     border-radius : 3px;
     cursor : pointer;
@@ -177,10 +167,6 @@
     float : right;
 }
 
-.minesweeper .scoreboard .panel.mines-left p {
-
-}
-
 .minesweeper .scoreboard .game-status {
     margin: 0;
     color : #fa0f4a;
@@ -188,12 +174,9 @@
 }
 
 .minesweeper .game-board {
-    /*width : 189px;*/
-    /*height : 189px;*/
     background : #000;
     overflow: hidden;
     padding: 0 0 1px 1px;
-
 }
 
 .minesweeper .game-board .cell {
@@ -202,7 +185,6 @@
     display : inline-block;
     float : left;
     margin : 1px 1px 0 0;
-    /*background : #808080;*/
     text-align : center;
     cursor: default;
 
@@ -255,17 +237,9 @@
     background : #fff url('icons/bomb.png') center no-repeat;
 }
 
-/*.minesweeper .game-board .cell.mine:before {*/
-    /*content : "*";*/
-/*}*/
-
 .minesweeper .game-board .cell.death {
     background : #fa0f4a url('icons/bomb.png') center no-repeat;
 }
-
-/*.minesweeper .game-board .cell.death:before {*/
-    /*content : "*";*/
-/*}*/
 
 .minesweeper .game-board .cell.one {
     background : #fff;

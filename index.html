@@ -6,11 +6,9 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Minesweeper</title>
-        <meta name="description" content="">
+        <title>AngularJS Minesweeper</title>
+        <meta name="description" content="The classic minesweeper game written in angular js">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
@@ -45,7 +43,6 @@
             <div class="game-board" ng-style="gameBoard.width">
               <cell class="{{cell.state}}" data-ng-repeat="cell in gameBoard.cells"></cell>
             </div>
-            <div ng-if="scoreBoard.gameStatus === 'You win!'" ng-include="'views/audio.html'"></div>
           </div>
 
           <div class="buttons">
@@ -76,17 +73,6 @@
             </form>
           </div>
         </div>
-
-        <h3>todo:</h3>
-        <ul>
-          <li style="text-decoration: line-through">Calculate win/ correct number of mines correctly</li>
-          <li style="text-decoration: line-through">Timer and mines left</li>
-          <li style="text-decoration: line-through">Score (cookie storage)</li>
-          <li style="text-decoration: line-through">game mode: switch between int, begginer and expert</li>
-          <li>Level specifc styling. eg smaller pics/text for beginner level</li>
-          <li style="text-decoration: line-through">Smiley face blinking</li>
-          <li>title/logo</li>
-        </ul>
 
         <script src="js/vendor/angular.js"></script>
         <script src="js/app.js"></script>
